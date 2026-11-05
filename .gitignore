@@ -1,1 +1,7 @@
 config.cfg
+
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+fruit
+Makefile
