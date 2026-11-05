@@ -10,7 +10,7 @@ int main() {
         return 1;
     }
 
-    std::cout << config->GetApiKey() << std::endl;
+    std::cout << config->GetGTFSFolderPath() << std::endl;
     return 0;
 }
 

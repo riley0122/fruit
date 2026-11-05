@@ -8,12 +8,12 @@
 class Config {
 private:
     std::string file_path;
-    std::string api_key;
+    std::string gtfs_folder_path;
 public:
     Config(std::string file_path);
     void Read();
 
-    std::string GetApiKey();
+    std::string GetGTFSFolderPath();
     bool GetIsValid();
 };
 

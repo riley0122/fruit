@@ -4,8 +4,8 @@ Config::Config(std::string file_path) {
     this->file_path = file_path;
 }
 
-std::string Config::GetApiKey() {
-    return this->api_key;
+std::string Config::GetGTFSFolderPath() {
+    return this->gtfs_folder_path;
 }
 
 void Config::Read() {
@@ -19,8 +19,8 @@ void Config::Read() {
 
         if (line.starts_with("#")) {
             continue;
-        } else if (line.starts_with("NS_API_KEY")) {
-            this->api_key = line.substr(11);
+        } else if (line.starts_with("GTFS_FOLDER")) {
+            this->gtfs_folder_path = line.substr(12);
         }
     }
 
@@ -28,5 +28,5 @@ void Config::Read() {
 }
 
 bool Config::GetIsValid() {
-    return !(this->file_path == "" || this->api_key == "");
+    return !(this->file_path == "" || this->gtfs_folder_path == "");
 }
