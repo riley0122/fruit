@@ -1,12 +1,10 @@
 #include <iostream>
 #include "config.hpp"
 
-Config* config;
-
-void initialize_config();
+Config* initialize_config();
 
 int main() {
-    initialize_config();
+    Config* config = initialize_config();
     if (!config->GetIsValid()) {
         std::cout << "Invalid config file!" << std::endl;
         return 1;
@@ -16,7 +14,8 @@ int main() {
     return 0;
 }
 
-void initialize_config() {
-    config = new Config("config.cfg");
+Config* initialize_config() {
+    Config* config = new Config("config.cfg");
     config->Read();
+    return config;
 }
