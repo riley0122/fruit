@@ -2,6 +2,8 @@
 #define CONFIG_HPP
 
 #include <string>
+#include <fstream>
+#include <algorithm>
 
 class Config {
 private:
@@ -12,6 +14,7 @@ public:
     void Read();
 
     std::string GetApiKey();
+    bool GetIsValid();
 };
 
 #endif /* CONFIG_H*/
