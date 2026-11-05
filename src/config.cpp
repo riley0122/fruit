@@ -26,3 +26,7 @@ void Config::Read() {
 
     ConfigFile.close();
 }
+
+bool Config::GetIsValid() {
+    return !(this->file_path == "" || this->api_key == "");
+}

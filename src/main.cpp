@@ -7,6 +7,10 @@ void initialize_config();
 
 int main() {
     initialize_config();
+    if (!config->GetIsValid()) {
+        std::cout << "Invalid config file!" << std::endl;
+        return 1;
+    }
 
     std::cout << config->GetApiKey() << std::endl;
     return 0;
