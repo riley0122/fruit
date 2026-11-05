@@ -7,3 +7,5 @@ fruit
 Makefile
 compile_commands.json
 .cache/
+
+test.gtfs/
