@@ -31,8 +31,13 @@ void GTFS::ReadRoute() {
     this->ReadGeneric<GTFS_Route>("routes.txt", &this->routes);
 }
 
+void GTFS::ReadShape() {
+    this->ReadGeneric<GTFS_Shape>("shapes.txt", &this->shapes);
+} 
+
 void GTFS::Read() {
     this->ReadAgency();
     this->ReadCalendarDate();
     this->ReadRoute();
+    this->ReadShape();
 }
