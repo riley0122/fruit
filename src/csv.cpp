@@ -5,17 +5,19 @@ std::vector<std::string> split(std::string input_str, char splitter) {
     std::vector<std::string> parts;
 
     std::string current;
-    int i = -1;
-    while (i < strlen(input)) {
-        char current_char = input[++i];
+    
+    for (uint8_t i = 0; i < strlen(input); i++) {
+        char current_char = input[i];
 
         if (current_char == splitter) {
             parts.push_back(current);
             current = "";
         } else {
-            current.append(&current_char);
+            current.push_back(current_char);
         }
     }
+
+    parts.push_back(current);
 
     return parts;
 }
