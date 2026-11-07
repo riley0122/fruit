@@ -2,6 +2,7 @@
 #define GTFS_AGENCY_HPP
 
 #include <string>
+#include <vector>
 #include "csv.hpp"
 
 class GTFS_Agency {
@@ -12,8 +13,7 @@ private:
     std::string timezone;
     std::string phone;
 public:
-    GTFS_Agency(CSV agency_file);
-
+    GTFS_Agency(std::vector<std::string> agency_data);
     std::string GetId();
     std::string GetName();
     std::string GetUrl();
