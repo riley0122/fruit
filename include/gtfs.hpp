@@ -4,9 +4,13 @@
 #include <string>
 #include "csv.hpp"
 
+#include "gtfs_agency.hpp"
+
 class GTFS {
 private:
     std::string directory;
+
+    std::vector<GTFS_Agency> agencies;
 
     void ReadAgency();
 public:
