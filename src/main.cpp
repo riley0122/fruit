@@ -1,5 +1,6 @@
 #include <iostream>
 #include "config.hpp"
+#include "gtfs.hpp"
 
 Config* initialize_config();
 
@@ -10,7 +11,8 @@ int main() {
         return 1;
     }
 
-    std::cout << config->GetGTFSFolderPath() << std::endl;
+    GTFS gtfs = GTFS(config->GetGTFSFolderPath());
+    gtfs.Read();
     return 0;
 }
 
