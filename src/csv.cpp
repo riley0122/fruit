@@ -25,7 +25,7 @@ CSV::CSV(std::string file_path) {
 
     std::string line;
     std::getline(this->FileStream, line);
-
+    this->column_names = split(line, ',');
 }
 
 CSV::~CSV() {
