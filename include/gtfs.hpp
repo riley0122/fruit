@@ -14,6 +14,9 @@ private:
     std::vector<GTFS_Agency> agencies;
     std::vector<GTFS_Calendar_Date> calendar_dates;
 
+    template<class T>
+    void ReadGeneric(std::string file_name, std::vector<T>* list);
+
     void ReadAgency();
     void ReadCalendarDate();
 public:

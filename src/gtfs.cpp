@@ -8,24 +8,23 @@ GTFS::GTFS(std::string file_path) {
     }
 }
 
-void GTFS::ReadAgency() {
-    CSV agency_file = CSV(this->directory + "agency.txt");
+template<class T>
+void GTFS::ReadGeneric(std::string file_name, std::vector<T>* list) {    
+    CSV file = CSV(this->directory + file_name);
 
-    while (agency_file.HasNextRow()) {
-        std::vector<std::string> agency_data = agency_file.ReadNextRow();
-        GTFS_Agency agency = GTFS_Agency(agency_data);
-        this->agencies.push_back(agency);
+    while (file.HasNextRow()) {
+        std::vector<std::string> data = file.ReadNextRow();
+        T object = T(data);
+        list->push_back(object);
     }
 }
 
-void GTFS::ReadCalendarDate() {
-    CSV calendar_date_file = CSV(this->directory + "calendar_dates.txt");
+void GTFS::ReadAgency() {
+    this->ReadGeneric<GTFS_Agency>("agency.txt", &this->agencies);
+}
 
-    while (calendar_date_file.HasNextRow()) {
-        std::vector<std::string> calendar_date_data = calendar_date_file.ReadNextRow();
-        GTFS_Calendar_Date calendar_date = GTFS_Calendar_Date(calendar_date_data);
-        this->calendar_dates.push_back(calendar_date);
-    }
+void GTFS::ReadCalendarDate() {
+    this->ReadGeneric<GTFS_Calendar_Date>("calendar_dates.txt", &this->calendar_dates);
 }
 
 void GTFS::Read() {
