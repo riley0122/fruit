@@ -9,7 +9,7 @@ std::vector<std::string> split(std::string input_str, char splitter) {
     while (i < strlen(input)) {
         char current_char = input[++i];
 
-        if (current_char == ',') {
+        if (current_char == splitter) {
             parts.push_back(current);
             current = "";
         } else {
