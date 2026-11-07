@@ -7,5 +7,7 @@ fruit
 Makefile
 compile_commands.json
 .cache/
+build/
+.vscode/
 
 test.gtfs/
