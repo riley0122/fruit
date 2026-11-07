@@ -36,8 +36,12 @@ void GTFS::ReadShape() {
 } 
 
 void GTFS::Read() {
+    std::cout << "Reading agencies..." << std::endl;
     this->ReadAgency();
+    std::cout << "Reading calendar dates..." << std::endl;
     this->ReadCalendarDate();
+    std::cout << "Reading routes..." << std::endl;
     this->ReadRoute();
+    std::cout << "Reading shapes..." << std::endl;
     this->ReadShape();
 }

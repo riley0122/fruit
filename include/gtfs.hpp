@@ -2,6 +2,8 @@
 #define GTFS_HPP
 
 #include <string>
+#include <iostream>
+
 #include "csv.hpp"
 
 #include "gtfs_agency.hpp"
