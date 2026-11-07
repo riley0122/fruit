@@ -15,6 +15,7 @@ private:
     std::ifstream FileStream;
 public:
     CSV(std::string file_path);
+    std::vector<std::string> ReadNextRow();
     ~CSV();
 };
 

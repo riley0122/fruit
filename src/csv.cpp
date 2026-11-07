@@ -28,6 +28,12 @@ CSV::CSV(std::string file_path) {
     this->column_names = split(line, ',');
 }
 
+std::vector<std::string> CSV::ReadNextRow() {
+    std::string line;
+    std::getline(this->FileStream, line);
+    return split(line, ',');
+}
+
 CSV::~CSV() {
     this->FileStream.close();
 }
