@@ -5,6 +5,10 @@
 #include <vector>
 #include "csv.hpp"
 
+#ifdef DEBUG
+#include <iostream>
+#endif
+
 class GTFS_Agency {
 private:
     std::string id;

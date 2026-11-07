@@ -8,6 +8,10 @@ GTFS_Agency::GTFS_Agency(std::vector<std::string> agency_data) {
     this->url = agency_data[2];
     this->timezone = agency_data[3];
     this->phone = agency_data[4];
+    
+#ifdef DEBUG
+    std::cout << "New agency: " << this->id << " : " << this->name << std::endl;
+#endif
 }
 
 std::string GTFS_Agency::GetId() {
