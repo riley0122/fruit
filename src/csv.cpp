@@ -1,7 +1,23 @@
 #include "csv.hpp"
 
-std::vector<std::string> split(std::string input, char splitter) {
-    // TODO: implement
+std::vector<std::string> split(std::string input_str, char splitter) {
+    const char* input = input_str.c_str();
+    std::vector<std::string> parts;
+
+    std::string current;
+    int i = -1;
+    while (i < strlen(input)) {
+        char current_char = input[++i];
+
+        if (current_char == ',') {
+            parts.push_back(current);
+            current = "";
+        } else {
+            current.append(&current_char);
+        }
+    }
+
+    return parts;
 }
 
 CSV::CSV(std::string file_path) {
