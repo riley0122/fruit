@@ -27,6 +27,12 @@ void GTFS::ReadCalendarDate() {
     this->ReadGeneric<GTFS_Calendar_Date>("calendar_dates.txt", &this->calendar_dates);
 }
 
+void GTFS::ReadRoute() {
+    this->ReadGeneric<GTFS_Route>("routes.txt", &this->routes);
+}
+
 void GTFS::Read() {
     this->ReadAgency();
+    this->ReadCalendarDate();
+    this->ReadRoute();
 }
