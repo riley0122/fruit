@@ -18,6 +18,16 @@ void GTFS::ReadAgency() {
     }
 }
 
+void GTFS::ReadCalendarDate() {
+    CSV calendar_date_file = CSV(this->directory + "calendar_dates.txt");
+
+    while (calendar_date_file.HasNextRow()) {
+        std::vector<std::string> calendar_date_data = calendar_date_file.ReadNextRow();
+        GTFS_Calendar_Date calendar_date = GTFS_Calendar_Date(calendar_date_data);
+        this->calendar_dates.push_back(calendar_date);
+    }
+}
+
 void GTFS::Read() {
     this->ReadAgency();
 }
