@@ -34,6 +34,10 @@ std::vector<std::string> CSV::ReadNextRow() {
     return split(line, ',');
 }
 
+bool CSV::HasNextRow() {
+    return this->FileStream.peek() != EOF;
+}
+
 CSV::~CSV() {
     this->FileStream.close();
 }

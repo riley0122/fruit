@@ -16,6 +16,7 @@ private:
 public:
     CSV(std::string file_path);
     std::vector<std::string> ReadNextRow();
+    bool HasNextRow();
     ~CSV();
 };
 
