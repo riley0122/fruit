@@ -4,6 +4,10 @@
 #include <string>
 #include <vector>
 
+#ifdef DEBUG
+#include <iostream>
+#endif
+
 class GTFS_Route {
 private:
     std::string id;

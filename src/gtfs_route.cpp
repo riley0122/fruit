@@ -12,6 +12,10 @@ GTFS_Route::GTFS_Route(std::vector<std::string> route_data) {
     this->color = route_data[6];
     this->text_color = route_data[7];
     this->url = route_data[8];
+
+#ifdef DEBUG
+    std::cout << "New route for " << this->agency_id << " with id " << this->id;
+#endif
 }
 
 std::string GTFS_Route::GetId() {
