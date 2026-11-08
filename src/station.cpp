@@ -24,3 +24,7 @@ std::string Station::GetName() {
 Position Station::GetPosition() {
     return this->position;
 }
+
+void Station::add_connection(size_t connection_index) {
+    this->connection_indexes.push_back(connection_index);
+}

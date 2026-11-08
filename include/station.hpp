@@ -14,6 +14,8 @@ private:
     std::string id;
     std::string name;
 
+    std::vector<size_t> connection_indexes;
+
     Position position;
 public:
     Station();
@@ -22,6 +24,8 @@ public:
     std::string GetId();
     std::string GetName();
     Position GetPosition();
+    
+    void add_connection(size_t connection_index);
 };
 
 #endif /* STATION_H */
