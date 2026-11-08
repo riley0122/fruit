@@ -12,6 +12,7 @@
 #include "gtfs_shape.hpp"
 #include "gtfs_stop_time.hpp"
 #include "gtfs_stop.hpp"
+#include "gtfs_transfer.hpp"
 
 class GTFS {
 private:
@@ -23,6 +24,7 @@ private:
     std::vector<GTFS_Shape> shapes;
     std::vector<GTFS_Stop_time> stop_times;
     std::vector<GTFS_Stop> stops;
+    std::vector<GTFS_Transfer> transfers;
 
     template<class T>
     void ReadGeneric(std::string file_name, std::vector<T>* list);
@@ -33,6 +35,7 @@ private:
     void ReadShape();
     void ReadStopTime();
     void ReadStop();
+    void ReadTransfer();
 public:
     GTFS(std::string file_path);
     void Read();
