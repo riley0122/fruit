@@ -1,6 +1,7 @@
 #include <iostream>
 #include "config.hpp"
 #include "gtfs.hpp"
+#include "graph.hpp"
 
 Config* initialize_config();
 GTFS* initialize_gtfs(Config* config);
@@ -15,6 +16,11 @@ int main(int argc, char *argv[]) {
     }
 
     GTFS* gtfs = initialize_gtfs(config);
+
+    Graph graph(*gtfs);
+    std::cout << graph.GetStationIndex("2992730") << std::endl;
+    std::cout << graph.GetStationIndex("2992167") << std::endl;
+    std::cout << graph.GetStationIndex("2994281") << std::endl;
 
     return 0;
 }
