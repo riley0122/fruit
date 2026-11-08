@@ -74,3 +74,7 @@ void GTFS::Read() {
 std::vector<GTFS_Stop> GTFS::GetStops() {
     return this->stops;
 }
+
+std::vector<GTFS_Stop_time> GTFS::GetStopTimes() {
+    return this->stop_times;
+}

@@ -44,6 +44,7 @@ public:
     void Read();
 
     std::vector<GTFS_Stop> GetStops();
+    std::vector<GTFS_Stop_time> GetStopTimes();
 };
 
 #endif /* GTFS_HPP */

@@ -3,6 +3,8 @@
 
 #include <vector>
 #include <string>
+#include <algorithm>
+
 #include "gtfs.hpp"
 #include "gtfs_stop.hpp"
 #include "station.hpp"
