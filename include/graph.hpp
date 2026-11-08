@@ -4,6 +4,8 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <unordered_map>
+#include <unordered_set>
 
 #include "gtfs.hpp"
 #include "gtfs_stop.hpp"

@@ -4,14 +4,20 @@ Graph::Graph(GTFS gtfs_data) {
     std::vector<GTFS_Stop> gtfs_stops = gtfs_data.GetStops();
 
     std::unordered_map<std::string, std::string> station_id_map;
+    std::unordered_set<std::string> parent_ids;
     for (size_t i = 0; i < gtfs_stops.size(); i++) {
         GTFS_Stop stop = gtfs_stops.at(i);
         if(stop.GetLocationType() == "0" && !stop.GetParentStation().empty()) {
             station_id_map[stop.GetId()] = stop.GetParentStation();
+            parent_ids.insert(stop.GetParentStation());
         } else {
             station_id_map[stop.GetId()] = stop.GetId();
         }
     }
+
+    std::stable_partition(gtfs_stops.begin(), gtfs_stops.end(), [parent_ids](GTFS_Stop stop) {
+        return parent_ids.count(stop.GetId()) > 0;
+    });
     
     for (size_t i = 0; i < gtfs_stops.size(); i++) {
         GTFS_Stop stop = gtfs_stops.at(i);
