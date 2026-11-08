@@ -8,16 +8,16 @@
 
 class Connection {
 private:
-    Station* from;
-    Station* to;
+    size_t from;
+    size_t to;
 
     Time depart_time;
     Time arrive_time;
 public:
-    Connection(Station* from, Station* to, Time deprature, Time arrival);
+    Connection(size_t from_station_index, size_t to_station_index, Time deprature, Time arrival);
     
-    Station* GetFrom();
-    Station* GetTo();
+    size_t GetFrom();
+    size_t GetTo();
 
     Time GetDepartureTime();
     Time GetArrivalTime();

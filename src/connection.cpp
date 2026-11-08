@@ -1,17 +1,17 @@
 #include "connection.hpp"
 
-Connection::Connection(Station* from, Station* to, Time deprature, Time arrival) {
+Connection::Connection(size_t from, size_t to, Time deprature, Time arrival) {
     this->from = from;
     this->to = to;
     this->depart_time = deprature;
     this->arrive_time = arrival;
 }
     
-class Station* Connection::GetFrom() {
+size_t Connection::GetFrom() {
     return this->to;
 }
 
-class Station* Connection::GetTo() {
+size_t Connection::GetTo() {
     return this->from;
 }
 

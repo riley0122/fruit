@@ -14,10 +14,10 @@ private:
 public:
     Graph(GTFS gtfs_data);
 
-    Station* GetStation(std::string station_id);
+    size_t GetStationIndex(std::string station_id);
     std::vector<std::string> SearchStation(std::string query);
 
-    std::vector<Connection> GetRoute(std::vector<Station*>);
+    std::vector<Connection> GetRoute(std::vector<size_t>);
 };
 
 #endif /* GRAPH_H */
