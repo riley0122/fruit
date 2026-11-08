@@ -21,9 +21,14 @@ int main(int argc, char *argv[]) {
 
     delete gtfs;
 
-    std::cout << graph.GetStationIndex("stoparea:17990") << std::endl;
-    std::cout << graph.GetStationIndex("stoparea:18188") << std::endl;
-    std::cout << graph.GetStationIndex("stoparea:18000") << std::endl;
+    std::cout << graph.GetStationIndex("stoparea:17990") << std::endl; // Ermelo
+    std::cout << graph.GetStationIndex("stoparea:18188") << std::endl; // Amsterdam Centraal
+    std::cout << graph.GetStationIndex("stoparea:18000") << std::endl; // Zwolle
+
+    // Amsterdam C
+    std::cout << graph.GetStationIndex("2992168") << std::endl; // sppor 1
+    std::cout << graph.GetStationIndex("2992171") << std::endl; // spoor 10b
+    std::cout << graph.GetStationIndex("2992198") << std::endl; // spoor 8b
 
     return 0;
 }
