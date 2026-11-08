@@ -11,3 +11,4 @@ build/
 .vscode/
 
 test.gtfs/
+log.txt
