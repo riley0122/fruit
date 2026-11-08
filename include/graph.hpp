@@ -20,7 +20,7 @@ public:
     size_t GetStationIndex(std::string station_id);
     std::vector<std::string> SearchStation(std::string query);
 
-    std::vector<Connection> GetRoute(std::vector<size_t>);
+    std::vector<Connection> GetRoute(Time start_time, std::vector<size_t>);
 };
 
 #endif /* GRAPH_H */

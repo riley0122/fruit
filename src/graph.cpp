@@ -13,6 +13,6 @@ size_t Graph::GetStationIndex(std::string station_id) {
     return this->station_lookup[station_id];
 }
 
-std::vector<Connection> Graph::GetRoute(std::vector<size_t>) {
-    // TODO: find route
+std::vector<Connection> Graph::GetRoute(Time start_time, std::vector<size_t>) {
+    Time current_time = start_time;
 }
