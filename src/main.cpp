@@ -18,9 +18,12 @@ int main(int argc, char *argv[]) {
     GTFS* gtfs = initialize_gtfs(config);
 
     Graph graph(*gtfs);
-    std::cout << graph.GetStationIndex("2992730") << std::endl;
-    std::cout << graph.GetStationIndex("2992167") << std::endl;
-    std::cout << graph.GetStationIndex("2994281") << std::endl;
+
+    delete gtfs;
+
+    std::cout << graph.GetStationIndex("stoparea:17990") << std::endl;
+    std::cout << graph.GetStationIndex("stoparea:18188") << std::endl;
+    std::cout << graph.GetStationIndex("stoparea:18000") << std::endl;
 
     return 0;
 }

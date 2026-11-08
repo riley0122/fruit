@@ -2,10 +2,28 @@
 
 Graph::Graph(GTFS gtfs_data) {
     std::vector<GTFS_Stop> gtfs_stops = gtfs_data.GetStops();
+
+    std::unordered_map<std::string, std::string> station_id_map;
     for (size_t i = 0; i < gtfs_stops.size(); i++) {
-        Station newStation(gtfs_stops.at(i));
-        this->stations.push_back(newStation);
-        this->station_lookup[newStation.GetId()] = i;
+        GTFS_Stop stop = gtfs_stops.at(i);
+        if(stop.GetLocationType() == "0" && !stop.GetParentStation().empty()) {
+            station_id_map[stop.GetId()] = stop.GetParentStation();
+        } else {
+            station_id_map[stop.GetId()] = stop.GetId();
+        }
+    }
+    
+    for (size_t i = 0; i < gtfs_stops.size(); i++) {
+        GTFS_Stop stop = gtfs_stops.at(i);
+        std::string parent_id = station_id_map[stop.GetId()];
+
+        if (stop.GetId() != parent_id) {
+            this->station_lookup[stop.GetId()] = this->station_lookup[parent_id];
+        } else {
+            Station newStation(gtfs_stops.at(i));
+            this->stations.push_back(newStation);
+            this->station_lookup[newStation.GetId()] = i;
+        }
     }
 
     std::unordered_map<std::string, std::vector<GTFS_Stop_time>> trip_map;
