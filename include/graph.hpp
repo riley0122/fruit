@@ -11,6 +11,8 @@ class Graph {
 private:
     std::vector<Station> stations;
     std::vector<Connection> connections;
+
+    std::unordered_map<std::string, size_t> station_lookup;
 public:
     Graph(GTFS gtfs_data);
 
