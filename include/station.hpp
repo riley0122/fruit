@@ -2,6 +2,9 @@
 #define STATION_H
 
 #include <string>
+#ifdef DEBUG
+#include <iostream>
+#endif
 
 #include "gtfs_stop.hpp"
 #include "position.hpp"

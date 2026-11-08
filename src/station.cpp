@@ -1,6 +1,9 @@
 #include "station.hpp"
 
 Station::Station(GTFS_Stop original) {
+#ifdef DEBUG
+    std::cout << original.GetLat() << ", " << original.GetLon() << std::endl;
+#endif
     float lat = std::stof(original.GetLat());
     float lon = std::stof(original.GetLon());
     Position pos(lat, lon);
