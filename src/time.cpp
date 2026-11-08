@@ -26,3 +26,16 @@ std::string Time::GetReadable() {
 
     return std::format("{}:{}:{}", hours, minutes, seconds);
 }
+
+Time Time::operator+(Time other) {
+    return Time(this->seconds_past_midnight + other.GetTimestamp());
+}
+
+Time Time::operator-(Time other) {
+    int64_t time = this->seconds_past_midnight - other.GetTimestamp();
+    if (time < 0) {
+        return Time(-1 * time);
+    } else {
+        return Time(time);
+    }
+}
