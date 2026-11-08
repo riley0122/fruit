@@ -14,7 +14,7 @@ GTFS_Route::GTFS_Route(std::vector<std::string> route_data) {
     this->url = route_data[8];
 
 #ifdef DEBUG
-    std::cout << "New route for " << this->agency_id << " with id " << this->id;
+    std::cout << "New route for " << this->agency_id << " with id " << this->id << std::endl;
 #endif
 }
 
