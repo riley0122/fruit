@@ -35,6 +35,10 @@ void GTFS::ReadShape() {
     this->ReadGeneric<GTFS_Shape>("shapes.txt", &this->shapes);
 } 
 
+void GTFS::ReadStopTime() {
+    this->ReadGeneric<GTFS_Stop_time>("stop_times.txt", &this->stop_times);
+}
+
 void GTFS::Read() {
     std::cout << "Reading agencies..." << std::endl;
     this->ReadAgency();
@@ -44,4 +48,6 @@ void GTFS::Read() {
     this->ReadRoute();
     std::cout << "Reading shapes..." << std::endl;
     this->ReadShape();
+    std::cout << "Reading stop times..." << std::endl;
+    this->ReadStopTime();
 }
