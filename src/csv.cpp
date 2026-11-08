@@ -5,11 +5,17 @@ std::vector<std::string> split(std::string input_str, char splitter) {
     std::vector<std::string> parts;
 
     std::string current;
+    bool is_in_string = false;
     
     for (uint8_t i = 0; i < strlen(input); i++) {
         char current_char = input[i];
 
-        if (current_char == splitter) {
+        if (current_char == '"') {
+            is_in_string = !is_in_string;
+            continue;
+        }
+
+        if (!is_in_string && current_char == splitter) {
             parts.push_back(current);
             current = "";
         } else {
