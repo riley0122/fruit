@@ -15,6 +15,10 @@ private:
 public:
     Station();
     Station(GTFS_Stop original);
+
+    std::string GetId();
+    std::string GetName();
+    Position GetPosition();
 };
 
 #endif /* STATION_H */

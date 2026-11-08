@@ -9,3 +9,15 @@ Station::Station(GTFS_Stop original) {
     this->id = original.GetId();
     this->name = original.GetName();
 }
+
+std::string Station::GetId() {
+    return this->id;
+}
+
+std::string Station::GetName() {
+    return this->name;
+}
+
+Position Station::GetPosition() {
+    return this->position;
+}
