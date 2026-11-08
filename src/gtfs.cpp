@@ -47,6 +47,10 @@ void GTFS::ReadTransfer() {
     this->ReadGeneric<GTFS_Transfer>("transfers.txt", &this->transfers);
 }
 
+void GTFS::ReadTrip() {
+    this->ReadGeneric<GTFS_Trip>("trips.txt", &this->trips);
+}
+
 void GTFS::Read() {
     std::cout << "Reading agencies..." << std::endl;
     this->ReadAgency();
@@ -62,4 +66,7 @@ void GTFS::Read() {
     this->ReadStop();
     std::cout << "Reading transfers..." << std::endl;
     this->ReadTransfer();
+    std::cout << "Reading trips..." << std::endl;
+    this->ReadTrip();
+    std::cout << "Finished reading GTFS!" << std::endl;
 }
