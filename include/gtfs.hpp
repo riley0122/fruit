@@ -42,6 +42,8 @@ private:
 public:
     GTFS(std::string file_path);
     void Read();
+
+    std::vector<GTFS_Stop> GetStops();
 };
 
 #endif /* GTFS_HPP */

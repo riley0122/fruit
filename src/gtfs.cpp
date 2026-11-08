@@ -70,3 +70,7 @@ void GTFS::Read() {
     this->ReadTrip();
     std::cout << "Finished reading GTFS!" << std::endl;
 }
+
+std::vector<GTFS_Stop> GTFS::GetStops() {
+    return this->stops;
+}
