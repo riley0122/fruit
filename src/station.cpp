@@ -2,7 +2,7 @@
 
 Station::Station(GTFS_Stop original) {
 #ifdef DEBUG
-    std::cout << "New Station " << original.GetId() << ":" << original.GetName() << "at " << original.GetLat() << ", " << original.GetLon() << std::endl;
+    std::cout << "New Station " << original.GetId() << ":" << original.GetName() << " at " << original.GetLat() << ", " << original.GetLon() << std::endl;
 #endif
     float lat = std::stof(original.GetLat());
     float lon = std::stof(original.GetLon());
