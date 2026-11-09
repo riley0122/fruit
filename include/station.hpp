@@ -26,6 +26,7 @@ public:
     Position GetPosition();
     
     void add_connection(size_t connection_index);
+    std::vector<size_t> getConnections();
 };
 
 #endif /* STATION_H */

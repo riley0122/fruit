@@ -72,6 +72,34 @@ size_t Graph::GetStationIndex(std::string station_id) {
     return this->station_lookup[station_id];
 }
 
-std::vector<Connection> Graph::GetRoute(Time start_time, std::vector<size_t>) {
+std::vector<Connection> Graph::GetRoute(Time start_time, std::vector<size_t> stations) {
     Time current_time = start_time;
+
+    std::vector<size_t> route_connection_indexes;
+
+    Station* start_station = &this->stations.at(stations.at(0));
+    Station* end_station = &this->stations.at(stations.back());
+
+    std::vector<size_t> connection_indexes = start_station->getConnections();
+
+    for (size_t i = 0; i < connections.size(); i++) {
+        size_t current_index = connection_indexes.at(i);
+        Connection* current = &this->connections.at(current_index);
+
+        Station* to_station = &this->stations.at(current->GetTo());
+        std::string to_station_id = to_station->GetId();
+
+        std::string end_station_id = end_station->GetId();
+
+        if (to_station_id == end_station_id) {
+            route_connection_indexes.push_back(i);
+        }
+    }
+
+    std::vector<Connection> route_connections;
+    for (size_t i = 0; i < route_connection_indexes.size(); i++) {
+        route_connections.push_back(this->connections.at(route_connection_indexes.at(i)));
+    }
+
+    return route_connections;
 }

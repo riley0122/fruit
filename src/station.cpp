@@ -28,3 +28,7 @@ Position Station::GetPosition() {
 void Station::add_connection(size_t connection_index) {
     this->connection_indexes.push_back(connection_index);
 }
+
+std::vector<size_t> Station::getConnections() {
+    return this->connection_indexes;
+}
