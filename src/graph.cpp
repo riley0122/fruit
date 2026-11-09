@@ -1,6 +1,7 @@
 #include "graph.hpp"
 
 Graph::Graph(GTFS gtfs_data) {
+    std::cout << "Building graph..." << std::endl;
     std::vector<GTFS_Stop> gtfs_stops = gtfs_data.GetStops();
 
     std::unordered_map<std::string, std::string> station_id_map;
@@ -66,6 +67,7 @@ Graph::Graph(GTFS gtfs_data) {
             this->stations[from_index].add_connection(this->connections.size() - 1);
         }
     }
+    std::cout << "Finished building graph!" << std::endl;
 }
 
 size_t Graph::GetStationIndex(std::string station_id) {
