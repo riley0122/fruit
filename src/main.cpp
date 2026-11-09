@@ -23,12 +23,15 @@ int main(int argc, char *argv[]) {
     delete gtfs;
 
     size_t ermelo = graph.GetStationIndex("stoparea:17990");
+    size_t hrwijk = graph.GetStationIndex("stoparea:18116");
     size_t adam_c = graph.GetStationIndex("stoparea:18188");
     size_t zwolle = graph.GetStationIndex("stoparea:18000");
 
     std::cout << ermelo << std::endl; // Ermelo
+    std::cout << hrwijk << std::endl; // Harderwijk
     std::cout << adam_c << std::endl; // Amsterdam Centraal
     std::cout << zwolle << std::endl; // Zwolle
+
 
     // Amsterdam C
     std::cout << graph.GetStationIndex("2992168") << std::endl; // sppor 1
@@ -37,10 +40,10 @@ int main(int argc, char *argv[]) {
 
     Time start("12:00:00");
     
-    std::vector<Connection> route_1 = graph.GetRoute(start, {zwolle, ermelo});
+    std::vector<Connection> route_1 = graph.GetRoute(start, {hrwijk, ermelo});
     std::cout << route_1.size() << std::endl; // should be 1
 
-    std::vector<Connection> route_2 = graph.GetRoute(start, {ermelo, zwolle});
+    std::vector<Connection> route_2 = graph.GetRoute(start, {ermelo, hrwijk});
     std::cout << route_2.size() << std::endl; // should be 1
 
     std::vector<Connection> route_3 = graph.GetRoute(start, {zwolle, adam_c});
