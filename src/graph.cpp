@@ -82,7 +82,7 @@ std::vector<Connection> Graph::GetRoute(Time start_time, std::vector<size_t> sta
 
     std::vector<size_t> connection_indexes = start_station->getConnections();
 
-    for (size_t i = 0; i < connections.size(); i++) {
+    for (size_t i = 0; i < connection_indexes.size(); i++) {
         size_t current_index = connection_indexes.at(i);
         Connection* current = &this->connections.at(current_index);
 
@@ -93,6 +93,7 @@ std::vector<Connection> Graph::GetRoute(Time start_time, std::vector<size_t> sta
 
         if (to_station_id == end_station_id) {
             route_connection_indexes.push_back(i);
+            break;
         }
     }
 
