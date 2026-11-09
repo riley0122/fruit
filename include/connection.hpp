@@ -3,6 +3,10 @@
 
 #include <string>
 
+#ifdef DEBUG
+#include <iostream>
+#endif
+
 #include "station.hpp"
 #include "time.hpp"
 

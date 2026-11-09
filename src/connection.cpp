@@ -5,6 +5,10 @@ Connection::Connection(size_t from, size_t to, Time deprature, Time arrival) {
     this->to = to;
     this->depart_time = deprature;
     this->arrive_time = arrival;
+
+#ifdef DEBUG
+    std::cout << "New connection from " << from << " to " << to << " at " << deprature.GetReadable() << " taking " << (arrival - deprature).GetReadable() << std::endl;
+#endif
 }
     
 size_t Connection::GetFrom() {
