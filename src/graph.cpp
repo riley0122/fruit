@@ -57,7 +57,7 @@ Graph::Graph(GTFS gtfs_data) {
             }
 
             size_t from_index = this->station_lookup[current_stop.GetStopId()];
-            size_t to_index = this->station_lookup[current_stop.GetStopId()];
+            size_t to_index = this->station_lookup[next_stop.GetStopId()];
 
             Time departure(current_stop.GetDepartureTime());
             Time arrival(next_stop.GetArrivalTime());
@@ -82,6 +82,8 @@ std::vector<Connection> Graph::GetRoute(Time start_time, std::vector<size_t> sta
     Station* start_station = &this->stations.at(stations.at(0));
     Station* end_station = &this->stations.at(stations.back());
 
+    std::string end_station_id = end_station->GetId();
+
     std::vector<size_t> connection_indexes = start_station->getConnections();
 
     for (size_t i = 0; i < connection_indexes.size(); i++) {
@@ -90,8 +92,6 @@ std::vector<Connection> Graph::GetRoute(Time start_time, std::vector<size_t> sta
 
         Station* to_station = &this->stations.at(current->GetTo());
         std::string to_station_id = to_station->GetId();
-
-        std::string end_station_id = end_station->GetId();
 
         if (to_station_id == end_station_id) {
             route_connection_indexes.push_back(i);
