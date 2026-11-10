@@ -19,8 +19,8 @@ int main(int argc, char *argv[]) {
     GTFS* gtfs = initialize_gtfs(config);
 
     Graph graph(*gtfs);
-
     delete gtfs;
+    graph.Save();
 
     size_t ermelo = graph.GetStationIndex("stoparea:17990");
     size_t hrwijk = graph.GetStationIndex("stoparea:18116");
