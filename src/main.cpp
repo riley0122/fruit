@@ -21,8 +21,6 @@ int main(int argc, char *argv[]) {
 
     std::optional<Graph> graph;
 
-    std::cout << config->GetUseGraphFile() << std::endl;
-
     if (config->GetUseGraphFile() && graphFile.good()) {
         graph.emplace("./graph.fruit");
     } else {
