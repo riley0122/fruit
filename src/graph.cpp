@@ -138,4 +138,6 @@ void Graph::Save() {
         Station to_station = this->stations[connection.GetTo()];
         connection.save(&outputfile, from_station, to_station);
     }
+
+    outputfile.close();
 }
