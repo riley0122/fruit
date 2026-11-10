@@ -56,8 +56,8 @@ Graph::Graph(GTFS gtfs_data) {
                 continue;
             }
 
-            size_t from_index = this->station_lookup[current_stop.GetStopId()];
-            size_t to_index = this->station_lookup[next_stop.GetStopId()];
+            size_t from_index = this->station_lookup[next_stop.GetStopId()];
+            size_t to_index = this->station_lookup[current_stop.GetStopId()];
 
             Time departure(current_stop.GetDepartureTime());
             Time arrival(next_stop.GetArrivalTime());
