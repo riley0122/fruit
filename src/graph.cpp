@@ -155,6 +155,8 @@ Graph::Graph(std::string filepath) {
     uint32_t station_count;
     input_file.read(reinterpret_cast<char*>(&station_count), sizeof(uint32_t));
 
+    // [id size 4 bytes][id][name length 4 bytes][name][lat 4 bytes][lon 4 bytes]
+
     for (int i = 0; i < station_count; i++) {
         uint32_t station_name_length;
         input_file.read(reinterpret_cast<char*>(&station_name_length), sizeof(uint32_t));
@@ -180,6 +182,43 @@ Graph::Graph(std::string filepath) {
 
         Station readStation(station_name, station_id, pos);
         this->stations.push_back(readStation);
+        this->station_lookup[station_id] = this->stations.size() - 1;
+    }
+
+    uint32_t connection_count;
+    input_file.read(reinterpret_cast<char*>(&connection_count), sizeof(uint32_t));
+    
+    // [from station id size 4 bytes][from station id][to station id size 4 bytes][to station id][departure time 4 bytes timestamp][arrival time 4 bytes timestamp]
+
+    for (int i = 0; i < connection_count; i++) {
+        uint32_t from_station_id_length;
+        input_file.read(reinterpret_cast<char*>(&from_station_id_length), sizeof(uint32_t));
+
+        std::string from_station_id;
+        from_station_id.resize(from_station_id_length);
+        input_file.read(&from_station_id[0], sizeof(char) * from_station_id_length);
+        size_t from_station_index = this->station_lookup[from_station_id];
+
+        uint32_t to_station_id_length;
+        input_file.read(reinterpret_cast<char*>(&to_station_id_length), sizeof(uint32_t));
+
+        std::string to_station_id;
+        to_station_id.resize(to_station_id_length);
+        input_file.read(&to_station_id[0], sizeof(char) * to_station_id_length);
+        size_t to_station_index = this->station_lookup[to_station_id];
+
+        uint32_t departure_timestamp;
+        input_file.read(reinterpret_cast<char*>(&departure_timestamp), sizeof(uint32_t));
+        Time departure(departure_timestamp);
+
+        uint32_t arrival_timestamp;
+        input_file.read(reinterpret_cast<char*>(&arrival_timestamp), sizeof(uint32_t));
+        Time arrival(arrival_timestamp);
+
+        Connection readConnection(from_station_index, to_station_index, departure, arrival);
+        this->connections.push_back(readConnection);
+        size_t connection_index = this->connections.size() - 1;
+        this->stations[from_station_index].add_connection(connection_index);
     }
 }
 
