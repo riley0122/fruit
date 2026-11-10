@@ -40,14 +40,14 @@ void Connection::save(std::ofstream* output, Station from_station, Station to_st
     output->write(from_id.data(), from_id_length);
 
     std::string to_id = to_station.GetId();
-    uint32_t to_id_length = from_id.length();
+    uint32_t to_id_length = to_id.length();
     output->write(reinterpret_cast<const char*>(&to_id_length), sizeof(to_id_length));
     output->write(to_id.data(), to_id_length);
 
     uint32_t departure_timestamp = this->depart_time.GetTimestamp();
     output->write(reinterpret_cast<const char*>(&departure_timestamp), sizeof(departure_timestamp));
 
-    uint32_t arrival_timestamp = this->depart_time.GetTimestamp();
+    uint32_t arrival_timestamp = this->arrive_time.GetTimestamp();
     output->write(reinterpret_cast<const char*>(&arrival_timestamp), sizeof(arrival_timestamp));
 }
 

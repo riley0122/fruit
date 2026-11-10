@@ -132,7 +132,7 @@ void Graph::Save() {
     uint32_t connection_count = this->connections.size();
     outputfile.write(reinterpret_cast<const char*>(&connection_count), sizeof(connection_count));
 
-    for (int i = i; i < this->connections.size(); i++) {
+    for (int i = 0; i < this->connections.size(); i++) {
         Connection connection = this->connections[i];
         Station from_station = this->stations[connection.GetFrom()];
         Station to_station = this->stations[connection.GetTo()];
