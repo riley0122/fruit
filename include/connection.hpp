@@ -26,6 +26,8 @@ public:
     Time GetDepartureTime();
     Time GetArrivalTime();
     Time GetDuration();
+
+    void save(std::ofstream* output, Station from_station, Station to_station);
 };
 
 #endif /* CONNECTION_HPP */

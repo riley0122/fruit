@@ -113,10 +113,29 @@ std::vector<Connection> Graph::GetRoute(Time start_time, std::vector<size_t> sta
 
 void Graph::Save() {
     std::ofstream outputfile("./graph.fruit");
-    // Save all stations
+
+    // Save format:
+    // [creation date 6 bytes ddmmyy][station count 4 bytes][station data][connection count 4 bytes][connection data]
+
+    auto now = std::chrono::system_clock::now();
+    std::string date_str = std::format("{:%d%m%y}", now);
+    char* date_str_data = date_str.data();
+    outputfile.write(date_str_data, sizeof(char) * date_str.size());
+
+    uint32_t station_count = this->stations.size();
+    outputfile.write(reinterpret_cast<const char*>(&station_count), sizeof(station_count));
+
     for (int i = 0; i < this->stations.size(); i++) {
         this->stations[i].save(&outputfile);
     }
 
-    
+    uint32_t connection_count = this->connections.size();
+    outputfile.write(reinterpret_cast<const char*>(&connection_count), sizeof(connection_count));
+
+    for (int i = i; i < this->connections.size(); i++) {
+        Connection connection = this->connections[i];
+        Station from_station = this->stations[connection.GetFrom()];
+        Station to_station = this->stations[connection.GetTo()];
+        connection.save(&outputfile, from_station, to_station);
+    }
 }
