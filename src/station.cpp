@@ -32,3 +32,22 @@ void Station::add_connection(size_t connection_index) {
 std::vector<size_t> Station::getConnections() {
     return this->connection_indexes;
 }
+
+void Station::save(std::ofstream* output) {
+    // Save format:
+    // [id size 4 bytes][id][name length 4 bytes][name][lat 4 bytes][lon 4 bytes]
+
+    uint32_t id_length = this->id.length();
+    output->write(reinterpret_cast<const char*>(&id_length), sizeof(id_length));
+    output->write(this->id.data(), id_length);
+
+    uint32_t name_length = this->name.length();
+    output->write(reinterpret_cast<const char*>(&name_length), sizeof(name_length));
+    output->write(this->name.data(), name_length);
+
+    float lat = position.GetLat();
+    float lon = position.GetLon();
+
+    output->write(reinterpret_cast<const char*>(&lat), sizeof(position.GetLat()));
+    output->write(reinterpret_cast<const char*>(&lon), sizeof(position.GetLon()));
+}

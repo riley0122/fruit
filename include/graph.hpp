@@ -7,6 +7,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <iostream>
+#include <fstream>
 
 #include "gtfs.hpp"
 #include "gtfs_stop.hpp"
@@ -21,11 +22,14 @@ private:
     std::unordered_map<std::string, size_t> station_lookup;
 public:
     Graph(GTFS gtfs_data);
+    Graph(std::string filepath);
 
     size_t GetStationIndex(std::string station_id);
     std::vector<std::string> SearchStation(std::string query);
 
     std::vector<Connection> GetRoute(Time start_time, std::vector<size_t>);
+
+    void Save();
 };
 
 #endif /* GRAPH_H */

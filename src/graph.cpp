@@ -110,3 +110,13 @@ std::vector<Connection> Graph::GetRoute(Time start_time, std::vector<size_t> sta
 
     return route_connections;
 }
+
+void Graph::Save() {
+    std::ofstream outputfile("./graph.fruit");
+    // Save all stations
+    for (int i = 0; i < this->stations.size(); i++) {
+        this->stations[i].save(&outputfile);
+    }
+
+    
+}

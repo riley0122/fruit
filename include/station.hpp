@@ -2,6 +2,7 @@
 #define STATION_H
 
 #include <string>
+#include <fstream>
 #ifdef DEBUG
 #include <iostream>
 #endif
@@ -27,6 +28,8 @@ public:
     
     void add_connection(size_t connection_index);
     std::vector<size_t> getConnections();
+
+    void save(std::ofstream* output);
 };
 
 #endif /* STATION_H */
