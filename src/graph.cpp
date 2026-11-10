@@ -93,6 +93,10 @@ std::vector<Connection> Graph::GetRoute(Time start_time, std::vector<size_t> sta
         Station* to_station = &this->stations.at(current->GetTo());
         std::string to_station_id = to_station->GetId();
 
+#ifdef DEBUG
+        std::cout << "[" << current_index << "] Looking for: " << end_station_id << "; Got: " << to_station_id << std::endl;
+#endif
+
         if (to_station_id == end_station_id) {
             route_connection_indexes.push_back(i);
             break;
