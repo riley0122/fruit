@@ -34,4 +34,6 @@ public:
     void Save();
 };
 
+std::string GetGraphFileCreationDate(std::string file_path);
+
 #endif /* GRAPH_H */

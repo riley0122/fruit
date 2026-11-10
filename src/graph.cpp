@@ -141,3 +141,56 @@ void Graph::Save() {
 
     outputfile.close();
 }
+
+Graph::Graph(std::string filepath) {
+    // [creation date 6 bytes ddmmyy][station count 4 bytes][station data][connection count 4 bytes][connection data]
+    std::string created_date = GetGraphFileCreationDate(filepath).insert(2, "/").insert(4, "/");
+    std::cout << "Loading graph from " << created_date << "..." << std::endl;
+
+    std::ifstream input_file(filepath);
+
+    // skip date
+    input_file.seekg(6);
+
+    uint32_t station_count;
+    input_file.read(reinterpret_cast<char*>(&station_count), sizeof(uint32_t));
+
+    for (int i = 0; i < station_count; i++) {
+        uint32_t station_name_length;
+        input_file.read(reinterpret_cast<char*>(&station_name_length), sizeof(uint32_t));
+
+        std::string station_name;
+        station_name.resize(station_name_length);
+        input_file.read(&station_name[0], sizeof(char) * station_name_length);
+
+        uint32_t station_id_length;
+        input_file.read(reinterpret_cast<char*>(&station_id_length), sizeof(uint32_t));
+
+        std::string station_id;
+        station_id.resize(station_id_length);
+        input_file.read(&station_id[0], sizeof(char) * station_id_length);
+
+        float lat;
+        float lon;
+        
+        input_file.read(reinterpret_cast<char *>(&lat), sizeof(lat));
+        input_file.read(reinterpret_cast<char *>(&lat), sizeof(lat));
+
+        Position pos(lat, lon);
+
+        Station readStation(station_name, station_id, pos);
+        this->stations.push_back(readStation);
+    }
+}
+
+std::string GetGraphFileCreationDate(std::string file_path) {
+    std::ifstream input_file(file_path);
+
+    char date_buffer[7] = {0};
+    input_file.read(date_buffer, sizeof(char) * 6);
+    std::string created_date(date_buffer);
+
+    input_file.close();
+
+    return created_date;
+}

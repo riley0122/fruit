@@ -21,6 +21,7 @@ private:
 public:
     Station();
     Station(GTFS_Stop original);
+    Station(std::string name, std::string id, Position position);
 
     std::string GetId();
     std::string GetName();

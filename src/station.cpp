@@ -51,3 +51,10 @@ void Station::save(std::ofstream* output) {
     output->write(reinterpret_cast<const char*>(&lat), sizeof(position.GetLat()));
     output->write(reinterpret_cast<const char*>(&lon), sizeof(position.GetLon()));
 }
+
+Station::Station(std::string name, std::string id, Position position) {
+    this->name = name;
+    this->id = id;
+    this->position = position;
+}
+
