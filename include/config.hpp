@@ -9,11 +9,13 @@ class Config {
 private:
     std::string file_path;
     std::string gtfs_folder_path;
+    bool use_graph_file = false;
 public:
     Config(std::string file_path);
     void Read();
 
     std::string GetGTFSFolderPath();
+    bool GetUseGraphFile();
     bool GetIsValid();
 };
 

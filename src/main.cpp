@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include "config.hpp"
 #include "gtfs.hpp"
 #include "graph.hpp"
@@ -16,16 +17,28 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    GTFS* gtfs = initialize_gtfs(config);
+    std::ifstream graphFile("./graph.fruit");
 
-    Graph graph(*gtfs);
-    delete gtfs;
-    graph.Save();
+    std::optional<Graph> graph;
 
-    size_t ermelo = graph.GetStationIndex("stoparea:17990");
-    size_t hrwijk = graph.GetStationIndex("stoparea:18116");
-    size_t adam_c = graph.GetStationIndex("stoparea:18188");
-    size_t zwolle = graph.GetStationIndex("stoparea:18000");
+    std::cout << config->GetUseGraphFile() << std::endl;
+
+    if (config->GetUseGraphFile() && graphFile.good()) {
+        graph.emplace("./graph.fruit");
+    } else {
+        GTFS* gtfs = initialize_gtfs(config);
+
+        graph.emplace(*gtfs);
+        delete gtfs;
+
+        if (config->GetUseGraphFile()) graph->Save();
+    }
+    graphFile.close();
+    
+    size_t ermelo = graph->GetStationIndex("stoparea:17990");
+    size_t hrwijk = graph->GetStationIndex("stoparea:18116");
+    size_t adam_c = graph->GetStationIndex("stoparea:18188");
+    size_t zwolle = graph->GetStationIndex("stoparea:18000");
 
     std::cout << ermelo << std::endl; // Ermelo
     std::cout << hrwijk << std::endl; // Harderwijk
@@ -34,19 +47,19 @@ int main(int argc, char *argv[]) {
 
 
     // Amsterdam C
-    std::cout << graph.GetStationIndex("2992168") << std::endl; // sppor 1
-    std::cout << graph.GetStationIndex("2992171") << std::endl; // spoor 10b
-    std::cout << graph.GetStationIndex("2992198") << std::endl; // spoor 8b
+    std::cout << graph->GetStationIndex("2992168") << std::endl; // sppor 1
+    std::cout << graph->GetStationIndex("2992171") << std::endl; // spoor 10b
+    std::cout << graph->GetStationIndex("2992198") << std::endl; // spoor 8b
 
     Time start("12:00:00");
     
-    std::vector<Connection> route_1 = graph.GetRoute(start, {hrwijk, ermelo});
+    std::vector<Connection> route_1 = graph->GetRoute(start, {hrwijk, ermelo});
     std::cout << route_1.size() << std::endl; // should be 1
 
-    std::vector<Connection> route_2 = graph.GetRoute(start, {ermelo, hrwijk});
+    std::vector<Connection> route_2 = graph->GetRoute(start, {ermelo, hrwijk});
     std::cout << route_2.size() << std::endl; // should be 1
 
-    std::vector<Connection> route_3 = graph.GetRoute(start, {zwolle, adam_c});
+    std::vector<Connection> route_3 = graph->GetRoute(start, {zwolle, adam_c});
     std::cout << route_3.size() << std::endl; // should be 0, no direct route
 
     return 0;

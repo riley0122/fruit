@@ -144,7 +144,7 @@ void Graph::Save() {
 
 Graph::Graph(std::string filepath) {
     // [creation date 6 bytes ddmmyy][station count 4 bytes][station data][connection count 4 bytes][connection data]
-    std::string created_date = GetGraphFileCreationDate(filepath).insert(2, "/").insert(4, "/");
+    std::string created_date = GetGraphFileCreationDate(filepath).insert(2, "/").insert(5, "/");
     std::cout << "Loading graph from " << created_date << "..." << std::endl;
 
     std::ifstream input_file(filepath);

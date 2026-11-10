@@ -21,6 +21,9 @@ void Config::Read() {
             continue;
         } else if (line.starts_with("GTFS_FOLDER")) {
             this->gtfs_folder_path = line.substr(12);
+        } else if (line.starts_with("USE_GRAPH_FILE")) {
+            std::string input = line.substr(15);
+            this->use_graph_file = input == "true";
         }
     }
 
@@ -29,4 +32,8 @@ void Config::Read() {
 
 bool Config::GetIsValid() {
     return !(this->file_path == "" || this->gtfs_folder_path == "");
+}
+
+bool Config::GetUseGraphFile() {
+    return this->use_graph_file;
 }
