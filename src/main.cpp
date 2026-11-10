@@ -8,8 +8,6 @@
 Config* initialize_config();
 GTFS* initialize_gtfs(Config* config);
 
-void run_plan(Config* config);
-
 int main(int argc, char *argv[]) {
     Config* config = initialize_config();
     if (!config->GetIsValid()) {
